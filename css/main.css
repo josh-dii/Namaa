@@ -1,0 +1,653 @@
+/***************** GENERAL STYLE ******************/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --accent-color1: #F2F5F7;
+    /* border color */
+    --accent-color2: #1D9B5E;
+    /* btn-color */
+}
+
+body {
+    font-size: 16px;
+    background-color: #f8f6f6;
+    color: black;
+    max-width: 1440px;
+    margin-inline: auto;
+    font-family: Poppins, sans-serif;
+    min-height: 100vh;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+    padding: 0;
+    font-weight: semi-bold;
+    color: #0A1519;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    z-index: 3;
+    width: 100%;
+}
+
+.btn {
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    background-color: var(--accent-color2);
+    border: 1px solid var(--accent-color2);
+    border-radius: 3.5rem;
+    color: #d9d9d9;
+    font-size: 15px;
+}
+
+.btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+    background-color: var(--accent-color2);
+    color: var(--accent-color1);
+}
+
+.btn:active {
+    transform: translateY(-2px) scale(0.98);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    background-color: var(--accent-color2);
+    border-color: #d9d9d9;
+}
+
+/***************** HERO STYLE ******************/
+.hero {
+    background-color: #0f2028;
+    height: 150vh;
+    background-image: url(/images/hero-background.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    max-height: 1000px;
+    min-height: 850px;
+}
+
+.hero-text {
+    padding-top: 6rem;
+    width: 650px;
+}
+
+.hero-text p {
+    line-height: 1.5rem;
+    font-size: 14px;
+    width: 500px;
+    color: #d9d9d9;
+}
+
+
+/***************** FEATURES STYLE ******************/
+.features-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: fit-content;
+}
+
+.features-card {
+    width: 340px;
+    padding-block: 2.5rem;
+    background-color: var(--accent-color1);
+    border: 1px solid var(--accent-color1);
+    border-radius: 2rem;
+    padding-inline: 2.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.features-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    background-color: var(--accent-color2);
+    color: white;
+}
+
+.features-card p {
+    line-height: 1.2rem;
+    font-size: 13px;
+}
+
+/***************** CURRENCY STYLE ******************/
+.currency-option {
+    margin-inline: 7rem;
+}
+
+.currency-text {
+    width: 400px;
+}
+
+.currency-btn:hover {
+    background-color: var(--accent-color2);
+}
+
+.benefit-image {
+    width: 26px;
+}
+
+/***************** CTA STYLE ******************/
+.cta-box {
+    width: fit-content;
+    padding: 4rem;
+    border: 1px solid var(--accent-color1);
+    background-color: var(--accent-color1);
+    border-radius: 1rem;
+}
+
+.cta-box {
+    background-color: var(--accent-color2);
+}
+
+.cta-text {
+    width: 600px;
+}
+
+/***************** FAQ STYLE ******************/
+.FAQs {
+    width: fit-content;
+}
+
+.FAQ-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.FAQ-card {
+    font-size: 12px;
+    width: 550px;
+    padding: 2rem;
+    border: 1px solid var(--accent-color1);
+    border-radius: 1rem;
+    background-color: var(--accent-color1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+}
+
+.FAQ-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.FAQ-card h6 {
+    border-bottom: 1px solid #262626;
+}
+
+.FAQ-btn {
+    background: #1D9B5E;
+    color: #fff;
+    border: none;
+    border-radius: 2rem;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: fit-content;
+}
+
+
+/***************** FOOTER STYLE ******************/
+footer {
+    background-image: url(/images/footer-pattern.svg);
+    background-position: 0% -400px;
+    background-color: #0A151A;
+    padding-top: 5rem;
+    background-size: cover;
+    padding-inline: 4rem;
+}
+
+.footer-main {
+    border-bottom: 1px solid #ffffff66;
+    padding-inline: 5rem;
+}
+
+
+
+
+/***************** HERO RESPONSIVENESS ******************/
+@media (max-width: 1050px) {
+    .header {
+        padding-inline: 2rem !important;
+    }
+
+    .hero-image {
+        width: 95% !important;
+    }
+
+    nav {
+        display: none !important;
+    }
+}
+
+@media (max-width: 890px) {
+    .hero {
+        height: 140vh;
+    }
+
+    .hero-text {
+        padding: 0rem !important;
+    }
+}
+
+@media (max-width: 720px) {
+    .header-btn {
+        display: none !important;
+    }
+
+    .hero-text {
+        width: 550px !important;
+    }
+
+    .hero-text h1 {
+        font-size: 45px !important;
+    }
+}
+
+@media (max-width: 575px) {
+    .hero {
+        height: 130vh;
+        min-height: 650px;
+    }
+
+    .hero-text {
+        width: 450px !important;
+    }
+
+    .hero-text h1 {
+        font-size: 35px !important;
+    }
+
+    .hero-text p {
+        width: 450px !important;
+    }
+
+    .logo {
+        width: 140px;
+    }
+}
+
+@media (max-width: 460px) {
+    .header {
+        padding-inline: 1rem !important;
+    }
+
+    .hero {
+        min-height: 500px;
+        height: 125vh;
+    }
+
+    .hero-text {
+        width: 90% !important;
+        padding-top: 5rem !important;
+    }
+
+    .hero-text h1 {
+        font-size: 30px !important;
+        gap: .25rem !important;
+    }
+
+    .hero-text p {
+        width: 300px !important;
+    }
+
+    .hero-btn {
+        flex-direction: column;
+    }
+}
+
+
+
+/***************** FEATURES RESPONSIVENESS ******************/
+@media (max-width: 1220px) {
+    .features-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 810px) {
+    .features-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .features-card {
+        width: 450px;
+    }
+}
+
+@media (max-width: 675px) {
+    .features-text {
+        width: 90% !important;
+    }
+
+    .features-text h2 {
+        font-size: 35px !important;
+    }
+
+    .features-card:nth-child(5),
+    .features-card:nth-child(6) {
+        display: none !important;
+    }
+}
+
+@media (max-width: 475px) {
+    .features-card {
+        width: 350px;
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 375px) {
+    .features-text h2 {
+        font-size: 30px !important;
+    }
+
+    .features-card {
+        width: 300px;
+    }
+}
+
+
+
+/***************** CURRENCY RESPONSIVENESS ******************/
+@media (max-width: 1220px) {
+    .currency-option {
+        margin-inline: 4rem !important;
+    }
+
+    .currency-image {
+        width: 450px !important;
+    }
+}
+
+@media (max-width: 1075px) {
+    .currency-option {
+        margin-inline: 3rem !important;
+    }
+
+    .currency-benefit p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 935px) {
+    .currency-option {
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 2rem;
+    }
+
+    .currency-text {
+        width: 650px !important;
+    }
+
+    .currency-image {
+        width: 600px !important;
+    }
+}
+
+@media (max-width: 720px) {
+    .currency-option {
+        margin-inline: auto !important;
+        width: fit-content;
+    }
+
+    .currency-text {
+        width: 600px !important;
+    }
+
+    .currency-image {
+        width: 550px !important;
+    }
+}
+
+@media (max-width: 720px) {
+    .currency-text {
+        width: 500px !important;
+    }
+
+    .currency-top-text h2 {
+        font-size: 35px !important;
+    }
+}
+
+
+@media (max-width: 575px) {
+
+    .currency-text,
+    .currency-image {
+        width: 450px !important;
+    }
+}
+
+@media (max-width: 475px) {
+
+    .currency-text,
+    .currency-image {
+        width: 90% !important;
+    }
+}
+
+@media (max-width: 375px) {
+    .currency-top-text h2 {
+        font-size: 30px !important;
+    }
+}
+
+
+
+
+/***************** CTA RESPONSIVENESS ******************/
+@media (max-width: 1175px) {
+    .cta-box {
+        width: 90%;
+    }
+}
+
+@media (max-width: 1055px) {
+    .cta-box {
+        padding: 2.5rem;
+    }
+
+    .cta-btn {
+        font-size: 13px !important;
+    }
+}
+
+@media (max-width: 915px) {
+    .cta-box h3 {
+        font-size: 22px;
+    }
+
+    .cta-box p {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 775px) {
+    .cta-box p {
+        display: none;
+    }
+
+    .hidden {
+        display: flex !important;
+    }
+}
+
+@media (max-width: 680px) {
+    .cta-box {
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+    }
+
+    .cta-text {
+        width: 100% !important;
+        text-align: center;
+    }
+}
+
+@media (max-width: 475px) {
+    .cta-box {
+        padding: 1.5rem;
+    }
+
+    .cta-box h3 {
+        font-size: 18px;
+    }
+
+    .cta-box p {
+        font-size: 10px;
+    }
+
+    .cta-btn {
+        padding-inline: 1rem !important;
+        padding-block: .7rem !important;
+    }
+}
+
+/***************** FAQ RESPONSIVENESS ******************/
+@media (max-width: 1175px) {
+    .FAQ-card {
+        width: 500px;
+    }
+}
+
+@media (max-width: 1055px) {
+    .FAQ-card {
+        width: 450px;
+    }
+}
+
+@media (max-width: 950px) {
+    .FAQ-card {
+        width: 420px;
+    }
+}
+
+@media (max-width: 895px) {
+    .FAQs {
+        align-items: center;
+    }
+
+    .FAQ-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .FAQ-card {
+        width: 550px;
+    }
+}
+
+@media (max-width: 635px) {
+
+    .FAQ-text,
+    .FAQ-card {
+        width: 500px;
+    }
+}
+
+@media (max-width: 575px) {
+
+    .FAQ-text,
+    .FAQ-card {
+        width: 400px !important;
+    }
+}
+
+@media (max-width: 475px) {
+
+    .FAQ-text,
+    .FAQ-card {
+        width: 350px !important;
+    }
+}
+
+@media (max-width: 375px) {
+
+    .FAQ-text,
+    .FAQ-card {
+        width: 300px !important;
+    }
+}
+
+
+
+/***************** FOOTER RESPONSIVENESS ******************/
+@media (max-width: 1055px) {
+    .footer {
+        padding-inline: 2rem !important;
+    }
+}
+
+@media (max-width: 835px) {
+    .footer-main {
+        flex-direction: column;
+    }
+
+    .footer-brand {
+        align-items: center;
+        text-align: center;
+        width: 300px !important;
+    }
+
+    .footer-contact {
+        flex-direction: row !important;
+        gap: 2rem !important;
+    }
+}
+
+@media (max-width: 720px) {
+
+    .email,
+    .number,
+    .address {
+        font-size: 13px !important;
+    }
+}
+
+@media (max-width: 680px) {
+    .footer {
+        padding-top: 3rem;
+    }
+
+    .footer-main {
+        align-items: start !important;
+    }
+
+    .footer-brand {
+        display: none !important;
+    }
+
+    .footer-contact {
+        flex-direction: column !important;
+    }
+
+    .footer-contact h3 {
+        display: block !important;
+        color: white;
+    }
+}
+
+@media (max-width: 610px) {
+
+    .footer-base,
+    .agreements {
+        flex-direction: column-reverse !important;
+    }
+
+    .footer-base {
+        gap: 1rem;
+    }
+}

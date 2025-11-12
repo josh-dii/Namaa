@@ -1,0 +1,106 @@
+:root {
+    --accent-color: #16277C0A;
+    --asides-width: 220px;
+}
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 15px;
+    background-color: var(--accent-color) !important;
+    min-height: 100vh;
+    font-family: Poppins, sans-serif;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+    padding: 0;
+    font-weight: semi-bold;
+    color: #0A1519;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.aside {
+    width: var(--asides-width); 
+    border-right: 1px solid #ced4da;
+    min-height: 100vh;
+}
+
+
+.nav-text {
+    font-size: 17px;
+}
+
+.header {
+    right: 0;
+    border-bottom: 1px solid #ced4da;
+    width: calc(100% - var(--asides-width));
+    z-index: 3;
+}
+
+.btn:hover {
+    background-color: #1D9B5E !important;
+}
+
+.aside-btn:hover {
+    background-color: transparent !important;
+}
+
+.gender-icon {
+    height: 35px;
+    width: 35px;
+}
+
+.balance-card {
+    width: 240px;
+}
+
+.login-box,
+.signup-box {
+    width: 350px;
+}
+
+.transfer,
+.withdraw,
+.payBills {
+    width: 500px;
+}
+
+.form-check-input:checked {
+    background-color: #1D9B5E;
+    border-color: #1D9B5E;
+}
+
+.btn {
+    background-color: #1D9B5E;
+}
+
+.text-small {
+    font-size: .7rem;
+}
+
+.currency-conversion {
+    width: fit-content;
+}
+
+.applyVerticalPaddingToMain {
+    padding-top: 77px !important;
+    padding-bottom: 3rem !important;
+}
+
+.mainContentMargin {
+    margin-left: var(--asides-width);
+}

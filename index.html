@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking Web App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./js/app.js">
+</head>
+
+<body>
+    <header class="header d-flex py-3 align-items-center justify-content-between position-fixed "
+        style="padding-inline: 4rem; background-color: #0f2028;">
+        <a href="/"><img src="./images/Company logo.svg" alt="" class="logo"></a>
+        <nav>
+            <ul class="d-flex gap-4 list-unstyled mb-0">
+                <li><a href="#" class="text-decoration-none" style="color: #d9d9d9; font-size: 14px;">Home</a></li>
+                <li><a href="#" class="text-decoration-none" style="color: #d9d9d9; font-size: 14px;">About Us</a></li>
+                <li><a href="#" class="text-decoration-none" style="color: #d9d9d9; font-size: 14px;">Features</a></li>
+                <li><a href="#" class="text-decoration-none" style="color: #d9d9d9; font-size: 14px;">FAQs</a></li>
+                <li><a href="#" class="text-decoration-none" style="color: #d9d9d9; font-size: 14px;">Contact Us</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="header-btn d-flex gap-2">
+            <a href="./app.html#login" class="btn bg-transparent py-2 px-3" style=" border: 1px solid #ffffff;">
+                Sign in
+            </a>
+            <a href="./app.html#register" class="btn py-2 px-3">Register</a>
+        </div>
+    </header>
+    <section class="hero d-flex flex-column">
+        <div class="hero-text d-flex flex-column gap-3 mx-auto my-auto text-center text-white align-items-center">
+            <h1 class="d-flex flex-column gap-3 text-white" style="font-size: 55px;">
+                <span>Cross-border payment</span>
+                <span>made easy.</span>
+            </h1>
+            <p>We help individuals and
+                businesses to securely send and receive money globally, without the bank fees.
+            </p>
+            <div class="hero-btn d-flex gap-3 pt-3 justify-content-center">
+                <a href="./app.html#register" class="text-decoration-none">
+                    <button class="btn d-flex gap-2 align-items-center px-4 h-100">
+                        <span style="font-size: 13px;">Create account</span>
+                        <img src="./images/Arrow - Right.svg" alt="">
+                    </button>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <button class="btn d-flex gap-2 pe-4 ps-3 align-items-center bg-light" style="color: #1D9B5E; ">
+                        <img src="./images/Group 6.svg" alt="" style="width: 35px;">
+                        <span style="font-size: 13px;">Watch Tutorial</span>
+                    </button>
+                </a>
+            </div>
+        </div>
+        <img src="./images/Group 38540.png" alt="" class="hero-image mx-auto" style="width: 950px;">
+    </section>
+    <section class="features d-flex flex-column gap-5 mt-4" style="padding-block: 5rem;">
+        <div class="features-text d-flex flex-column mx-auto text-center" style="width: 650px;">
+            <h2 style="font-size: 40px;">Banking Reimagined for the Future You</h2>
+            <p>
+                Trust us to deliver cutting-edge innovation, transparency, and personalized service,
+                all designed to help you achieve financial freedom
+            </p>
+        </div>
+        <div class="features-container gap-5 mx-auto">
+            <div class="features-card d-flex flex-column gap-2 justify-content-center align-items-center text-center">
+                <img src="./images/instant account setup.svg" alt="" class="features-image" style="width: 60px;">
+                <h4 style="font-size: 20px;">Instant Account Setup</h4>
+                <p>Customers can set up a bank account in minutes</p>
+            </div>
+            <div
+                class="features-card d-flex flex-column gap-2 justify-content-center  align-items-center text-center box-sm">
+                <img src="./images/mobile banking.svg" alt="" class="features-image" style="width: 60px;">
+                <h4 style="font-size: 20px;">Mobile Banking</h4>
+                <p>Full-featured mobile app that allows users to manage
+                    their finances</p>
+            </div>
+            <div
+                class="features-card d-flex flex-column gap-2 justify-content-center  align-items-center text-center box-sm">
+                <img src="./images/savings account.svg" alt="" class="features-image" style="width: 60px;">
+                <h4 style="font-size: 20px;">Savings Account</h4>
+                <p>Grow your wealth with flexible savings and great rates.
+                </p>
+            </div>
+            <div
+                class="features-card d-flex flex-column gap-2 justify-content-center  align-items-center text-center box-sm">
+                <img src="./images/account access.svg" alt="" class="features-image" style="width: 60px;">
+                <h4 style="font-size: 20px;">24/7 Account Access</h4>
+                <p>Enjoy secure online banking—manage your money anytime,
+                    anywhere.</p>
+            </div>
+            <div
+                class="features-card d-flex flex-column gap-2 justify-content-center  align-items-center text-center box-sm">
+                <img src="./images/secure transaction.svg" alt="" class="features-image" style="width: 60px;">
+                <h4 style="font-size: 20px;">Secure Transactions</h4>
+                <p>Your transactions are secured with encryption and
+                    multi-factor
+                    authentication.</p>
+            </div>
+            <div
+                class="features-card d-flex flex-column gap-2 justify-content-center  align-items-center text-center box-sm">
+                <img src="./images/virtual credit card.svg" alt="" class="features-image" style="width: 60px;">
+                <h4 style="font-size: 20px;">Virtual Credit Cards</h4>
+                <p style="line-height: 1.2rem; font-size: 13px;">Generate virtual cards instantly for online shopping
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="currency-option d-flex justify-content-between gap-5 mt-5">
+        <div class="currency-text d-flex flex-column gap-4">
+            <div class="currency-top-text d-flex flex-column gap-3">
+                <h2 style="font-size: 40px;">One account for 90+ currencies worldwide.</h2>
+                <p>Our platform allows you to send, receive, and convert currencies seamlessly in real-time, all while
+                    saving on fees.</p>
+            </div>
+            <div class="currency-bottom-text d-flex flex-column gap-3">
+                <div class="currency-benefit d-flex gap-2">
+                    <img src="./images/Frame 2121457509.svg" alt="" class="benefit-image">
+                    <p>Convert between currencies instantly.</p>
+                </div>
+                <div class="currency-benefit d-flex gap-2">
+                    <img src="./images/Frame 2121457509.svg" alt="" class="benefit-image">
+                    <p>Simple and intuitive platform for managing.</p>
+                </div>
+                <div class="currency-benefit d-flex gap-2">
+                    <img src="./images/Frame 2121457509.svg" alt="" class="benefit-image">
+                    <p>Manage your currencies anytime, anywhere</p>
+                </div>
+            </div>
+            <button class="currency-btn d-flex gap-2 btn px-4 py-3 align-self-start text-white">
+                <span>Get Started now</span>
+                <img src="./images/Arrow - Right.svg" alt="">
+            </button>
+        </div>
+        <img src="./images/Frame 71.png" alt="" class="currency-image" style="width: 500px;">
+    </section>
+    <section class="cta mx-auto py-5 mt-5">
+        <div class="cta-box d-flex gap-5 justify-content-between align-items-center mx-auto text-white">
+            <div class="cta-text d-flex flex-column gap-2">
+                <h3 class="text-white d-flex flex-column gap-1">
+                    <span>Start your financial journey</span>
+                    <span>with YourBank today!</span>
+                </h3>
+                <p style="width: 600px;">
+                    Join YourBank today! Take control of your finances and achieve your goals with our personalized 
+                    solutions and outstanding customer service
+                </p>
+                <p class="hidden d-none">
+                    Take control of your finances with YourBank — personalized solutions and exceptional service for
+                    your goals.
+                </p>
+            </div>
+            <button class="cta-btn btn d-flex gap-1 px-4 py-3 align-self-center"
+                style="color: #1D9B5E; background-color: white; border: 1px solid white;">
+                <span>Open</span>
+                <span>Account</span>
+            </button>
+        </div>
+    </section>
+    <section class="FAQs d-flex flex-column gap-5 mx-auto py-5">
+        <div class="FAQ-text d-flex flex-column">
+            <h2>Frequently Asked Questions</h2>
+            <p>Still you have any questions? Contact our Team via support@yourbank.com</p>
+        </div>
+        <div class="FAQ-container gap-3">
+            <div class="FAQ-card d-flex flex-column">
+                <h6 class="pb-2">How do I open an account with YourBank?</h6>
+                <p class="pt-2">
+                    Opening an account with YourBank is quick and easy.
+                    Visit our website and click on **“Open an Account.”**
+                    Follow the simple steps to provide your information and complete the process.
+                    Need help? Our friendly support team is always available.
+                </p>
+            </div>
+            <div class="FAQ-card d-flex flex-column">
+                <h6 class="pb-2">What documents do I need to provide to apply for a loan?</h6>
+                <p class="pt-2">
+                    Loan document requirements vary by loan type.
+                    Typically, you’ll need ID (passport or driver’s license), proof of income, and collateral details if
+                    applicable.
+                    Our loan officers will explain exactly what’s needed.
+                    They’ll guide you through every step of the application process.
+                </p>
+            </div>
+            <div class="FAQ-card d-flex flex-column">
+                <h6 class="pb-2">How can I access my accounts online?</h6>
+                <p class="pt-2">
+                    Accessing your accounts online is simple and secure.
+                    Visit our website and click **“Login”** to sign in with your credentials.
+                    New user? Click **“Enroll Now”** to register quickly.
+                    Need help? Our support team is always ready to assist.
+                </p>
+            </div>
+            <div class="FAQ-card d-flex flex-column">
+                <h6 class="pb-2">Are my transactions and personal information secure?</h6>
+                <p class="pt-2">
+                    At YourBank, your security is our top priority.
+                    We use advanced encryption and multi-factor authentication to protect your data.
+                    Our systems are regularly updated to counter new threats.
+                    Bank confidently knowing your information is always secure.
+                </p>
+            </div>
+        </div>
+        <button class="FAQ-btn btn align-self-center d-flex gap-2 align-items-center p-3">
+            <span style="font-size: 14px;">Load all FAQ's</span>
+            <img src="./images/Vector 9.svg" alt="" class="FAQ-image">
+        </button>
+    </section>
+    <footer class="footer d-flex flex-column gap-4 mx-auto align-items-center mt-5 pb-5">
+        <div class="footer-main d-flex justify-content-between w-100 align-items-center pb-4">
+            <div class="footer-brand d-flex flex-column gap-3 text-white" style="width: 400px;">
+                <img src="./images/Company logo.svg" alt="" class="logo" style="width: 140px;">
+                <p>Empowering Your Projects, Enhancing Your Success, Every Step of the Way.</p>
+                <div>
+                    <img src="./images/Facebook.svg" alt="" class="socials">
+                    <img src="./images/Linkedin.svg" alt="" class="socials">
+                    <img src="./images/Instagram.svg" alt="" class="socials">
+                    <img src="./images/Twitter.svg" alt="" class="socials">
+                </div>
+            </div>
+            <div class="footer-contact d-flex flex-column gap-4 text-white pt-4">
+                <h3 class="d-none">Contact Us</h3>
+                <div class="email d-flex gap-2 align-items-center" style="font-size: 14px;">
+                    <img src="./images/email.svg" alt="" style="width: 20px;">
+                    <p>chigbatajoshua9@gmail.com</p>
+                </div>
+                <div class="number d-flex gap-2 align-items-center" style="font-size: 14px;">
+                    <img src="./images/phone.svg" alt="" style="width: 20px;">
+                    <p>+234 915 745 6062</p>
+                </div>
+                <div class="address d-flex gap-2 align-items-center" style="font-size: 14px;">
+                    <img src="./images/location.svg" alt="" style="width: 20px;">
+                    <p class="d-flex flex-column gap-1">
+                        <span>5, Oremeta Street, Ikeja,</span>
+                        <span>Lagos State, Nigeria.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-base d-flex justify-content-between w-100 text-white pt-4" style="font-size: 13px;">
+            <p>© 2024 Euphoria. All rights reserved.</p>
+            <div class="agreements d-flex gap-3">
+                <span>Privacy Policy</span>
+                <span>Terms of Services</span>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
