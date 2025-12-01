@@ -28,7 +28,7 @@
 
         <div class=" d-flex flex-column gap-4">
             <a href="./app.html#dashboard" id="dashboardBtn"
-                class="btn aside-btn nav-text text-start d-flex align-items-center gap-2 p-0 bg-transparent">
+                class="text-black text-decoration-none aside-btn nav-text text-start d-flex align-items-center gap-2 p-0 bg-transparent">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-dashboard size-5 shrink-0 opacity-80 group-hover:opacity-100 
                     group-hover:text-accent-foreground" aria-hidden="true">
@@ -40,7 +40,7 @@
                 <span>Dashboard</span>
             </a>
             <a href="./app.html#withdraw" id="withdrawBtn"
-                class="btn aside-btn nav-text text-start d-flex align-items-center gap-2 p-0 bg-transparent">
+                class="text-black text-decoration-none aside-btn nav-text text-start d-flex align-items-center gap-2 p-0 bg-transparent">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="lucide lucide-trending-up size-5 shrink-0 opacity-80 group-hover:opacity-100 group-hover:text-accent-foreground"
@@ -67,7 +67,7 @@
                 <span>Transfer</span>
             </a>
             <a href="./app.html#changePassword" id="changePwdsBtn"
-                class="btn aside-btn nav-text text-start d-flex d-none align-items-center gap-2 p-0 bg-transparent">
+                class="text-black text-decoration-none aside-btn nav-text text-start d-flex d-none align-items-center gap-2 p-0 bg-transparent">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="lucide lucide-users size-5 shrink-0 opacity-80 group-hover:opacity-100 group-hover:text-accent-foreground"
@@ -80,7 +80,7 @@
                 <span>Change Password</span>
             </a>
             <a href="./app.html#payBills" id="payBillsBtn"
-                class="btn aside-btn nav-text text-start d-flex align-items-center gap-2 p-0 bg-transparent">
+                class="text-black text-decoration-none aside-btn nav-text text-start d-flex align-items-center gap-2 p-0 bg-transparent">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="lucide lucide-settings size-5 shrink-0 opacity-80 group-hover:opacity-100 group-hover:text-accent-foreground"
@@ -93,7 +93,7 @@
                 <span>Pay bills</span>
             </a>
             <a href="./app.html#settings" id="settingsBtn"
-                class="btn aside-btn nav-text text-start d-flex align-items-center gap-2 p-0 bg-transparent">
+                class="text-black text-decoration-none aside-btn nav-text text-start d-flex align-items-center gap-2 p-0 bg-transparent">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="lucide lucide-settings size-5 shrink-0 opacity-80 group-hover:opacity-100 group-hover:text-accent-foreground"
@@ -368,6 +368,32 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
+        </section>
+
+        <section id="deposit" class="deposit d-flex d-none flex-column gap-3 p-5 rounded-4 shadow-sm bg-white">
+            <h5 class="mb-0">Deposit Funds</h5>
+            <p>Add money to your wallet using any method below</p>
+
+            <div class="d-flex flex-column gap-3">
+                <div class="d-flex flex-column gap-2 p-3 border rounded-3">
+                    <label class="fw-semibold">Enter Amount</label>
+                    <input type="number" min="100" class="form-control" id="depositAmount" placeholder="₦0.00" />
+                    <small>Minimum deposit: ₦100</small>
+                </div>
+
+                <div class="d-flex flex-column gap-2 p-3 border rounded-3" style="width: 500px;">
+                    <span class="fw-semibold">Choose Deposit Method</span>
+                    <div class="d-grid gap-2">
+                        <button class="btn bg-white btn-outline-dark py-2 text-start rounded-3 deposit-method">Bank
+                            Transfer</button>
+                        <button class="btn bg-white btn-outline-dark py-2 text-start rounded-3 deposit-method">Debit
+                            Card</button>
+                        <button
+                            class="btn bg-white btn-outline-dark py-2 text-start rounded-3 deposit-method">USSD</button>
+                    </div>
+                </div>
+                <button id="nextStepBtn" class="btn align-self-center text-white mt-2 d-none">Next</button>
             </div>
         </section>
 

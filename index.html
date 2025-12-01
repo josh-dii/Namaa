@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <header class="header d-flex py-3 align-items-center justify-content-between position-fixed "
+    <header class="header navbar d-flex py-3 align-items-center justify-content-between position-fixed "
         style="padding-inline: 4rem; background-color: #0f2028;">
         <a href="/"><img src="./images/Company logo.svg" alt="" class="logo"></a>
         <nav>
@@ -31,30 +31,46 @@
             </ul>
         </nav>
         <div class="header-btn d-flex gap-2">
-            <a href="./app.html#login" class="btn bg-transparent py-2 px-3" style=" border: 1px solid #ffffff;">
+            <a href="./app.html#login" class="btn nav-left-btn bg-transparent py-2 px-3 border-white">
                 Sign in
             </a>
-            <a href="./app.html#register" class="btn py-2 px-3">Register</a>
+            <a href="./app.html#register" class="btn nav-right-btn py-2 px-3">Register</a>
         </div>
+        <div class="dropdown dropstart menu d-none">
+    <button class="btn btn-secondary dropdown-toggle hamburger-btn" type="button" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        <img src="/images/icon-hamburger.svg" alt="" style="width:22px;">
+    </button>
+
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+</div>
+
+        
     </header>
     <section class="hero d-flex flex-column">
         <div class="hero-text d-flex flex-column gap-3 mx-auto my-auto text-center text-white align-items-center">
             <h1 class="d-flex flex-column gap-3 text-white" style="font-size: 55px;">
                 <span>Cross-border payment</span>
-                <span>made easy.</span>
+                <span>made easy</span>
             </h1>
             <p>We help individuals and
-                businesses to securely send and receive money globally, without the bank fees.
+                businesses to securely send and receive money globally, without the bank fees
             </p>
             <div class="hero-btn d-flex gap-3 pt-3 justify-content-center">
                 <a href="./app.html#register" class="text-decoration-none">
-                    <button class="btn d-flex gap-2 align-items-center px-4 h-100">
+                    <button class="btn left-hero-btn d-flex gap-2 align-items-center px-4 h-100"
+                        style="padding-block: .7rem;">
                         <span style="font-size: 13px;">Create account</span>
                         <img src="./images/Arrow - Right.svg" alt="">
                     </button>
                 </a>
                 <a href="#" class="text-decoration-none">
-                    <button class="btn d-flex gap-2 pe-4 ps-3 align-items-center bg-light" style="color: #1D9B5E; ">
+                    <button class="btn right-hero-btn d-flex gap-2 pe-4 ps-3 align-items-center bg-light"
+                        style="color: #1D9B5E; ">
                         <img src="./images/Group 6.svg" alt="" style="width: 35px;">
                         <span style="font-size: 13px;">Watch Tutorial</span>
                     </button>
@@ -64,7 +80,7 @@
         <img src="./images/Group 38540.png" alt="" class="hero-image mx-auto" style="width: 950px;">
     </section>
     <section class="features d-flex flex-column gap-5 mt-4" style="padding-block: 5rem;">
-        <div class="features-text d-flex flex-column mx-auto text-center" style="width: 650px;">
+        <div class="features-text d-flex gap-3 flex-column mx-auto text-center" style="width: 650px;">
             <h2 style="font-size: 40px;">Banking Reimagined for the Future You</h2>
             <p>
                 Trust us to deliver cutting-edge innovation, transparency, and personalized service,
@@ -151,7 +167,7 @@
                     <span>with YourBank today!</span>
                 </h3>
                 <p style="width: 600px;">
-                    Join YourBank today! Take control of your finances and achieve your goals with our personalized 
+                    Join YourBank today! Take control of your finances and achieve your goals with our personalized
                     solutions and outstanding customer service
                 </p>
                 <p class="hidden d-none">
@@ -210,6 +226,7 @@
                 </p>
             </div>
         </div>
+
         <button class="FAQ-btn btn align-self-center d-flex gap-2 align-items-center p-3">
             <span style="font-size: 14px;">Load all FAQ's</span>
             <img src="./images/Vector 9.svg" alt="" class="FAQ-image">

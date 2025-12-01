@@ -20,9 +20,9 @@ let mainElement = document.querySelector("main")
 
 //page navigation buttons
 let dashboardNav = document.querySelector('#dashboardBtn')
+let depositNav = document.querySelector('#depositBtn')
 let transferNav = document.querySelector('#transferBtn')
 let withdrawNav = document.querySelector('#withdrawBtn')
-let changePwdNav = document.querySelector('#changePwdBtn')
 let payBillsNav = document.querySelector('#payBillsBtn')
 let settingsNav = document.querySelector('#settingsBtn')
 
@@ -42,6 +42,7 @@ let forgotPasswordBtn = document.querySelector('#forgotPasswordBtn')
 //pages
 let loginPage = document.querySelector('#login')
 let dashboardPage = document.querySelector('#dashboard')
+let depositPage = document.querySelector('#deposit')
 let transferPage = document.querySelector('#transfer')
 let withdrawPage = document.querySelector('#withdraw')
 let changePwdPage = document.querySelector('#changePwd')
@@ -59,6 +60,10 @@ dashboardNav.addEventListener("click", function () {
   showPage(dashboardPage)
 })
 
+depositNav.addEventListener("click", function () {
+  showPage(depositPage)
+})
+ 
 transferNav.addEventListener("click", function () {
   showPage(transferPage)
 })
@@ -68,10 +73,6 @@ withdrawNav.addEventListener("click", function () {
 })
 
 settingsNav.addEventListener("click", function () {
-  showPage(settingsPage)
-})
-
-changePwdNav.addEventListener("click", function () {
   showPage(settingsPage)
 })
 
@@ -123,7 +124,30 @@ signOutBtn.addEventListener("click", function() {
   showPage(loginPage);
 })
 
+let selectedMethod = '';
 
+depositMethods.forEach(btn => {
+    btn.addEventListener("click", () => {
+        depositMethods.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        selectedMethod = btn.textContent;
+
+        if (depositAmountInput.value) nextStepBtn.classList.remove("d-none");
+    });
+});
+
+depositAmountInput.addEventListener("input", () => {
+    if (depositAmountInput.value && selectedMethod) nextStepBtn.classList.remove("d-none");
+    else nextStepBtn.classList.add("d-none");
+});
+
+nextStepBtn.addEventListener("click", () => {
+    if (!depositAmountInput.value || !selectedMethod) return;
+    alert(
+        `Deposit Amount: ₦${parseFloat(depositAmountInput.value).toLocaleString()}\n` +
+        `Deposit Method: ${selectedMethod}`
+    );
+});
 
 
 
@@ -280,6 +304,22 @@ function greetUser(name) {
   console.log(`Good ${time}, ${name}`);
 }
 
+function transfer() {
+  let currentUser = bankUsers.find(
+    (user) => user.id === currentUserId
+  );
+
+  let email = document.querySelector('#transferEmail').value.trim()
+  let transferAmount = Number(document.querySelector('#transferInput').value.trim());
+  let balance = currentUser.balance
+  transferInput.value = "";
+  if (currentUser && transferAmount <= balance ) {
+    let newBalance = balance - transferAmount
+    currentUser.balance = newBalance;
+    newBalance.textContent = `Hello ${currentUser.firstName}, your new balance is ₦${currentUser.balance.toLocaleString()}`;
+  }
+
+}
 function withdraw() {
   let currentUser = bankUsers.find(
     (user) => user.id === currentUserId
