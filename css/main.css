@@ -7,6 +7,7 @@
 
 :root {
     --accent-color1: #F2F5F7;
+     --accent-color1_5: #467c62;
     /* border color */
     --accent-color2: #1D9B5E;
     /* btn-color */
@@ -15,7 +16,7 @@
 body {
     font-size: 16px;
     background-color: #f8f6f6;
-    color: black;
+    color: #2b2b2b;
     max-width: 1440px;
     margin-inline: auto;
     font-family: Poppins, sans-serif;
@@ -28,7 +29,7 @@ h3 {
     margin: 0;
     padding: 0;
     font-weight: semi-bold;
-    color: #0A1519;
+    color: #0a1519d4;
 }
 
 p {
@@ -70,7 +71,7 @@ p {
 .hero {
     background-color: #0f2028;
     height: 150vh;
-    background-image: url(/images/hero-background.svg);
+    background-image: url(../images/hero-background.svg);
     background-repeat: no-repeat;
     background-size: cover;
     max-height: 1000px;
@@ -101,10 +102,9 @@ p {
     width: 340px;
     padding-block: 2.5rem;
     background-color: var(--accent-color1);
-    border: 1px solid var(--accent-color1);
-    border-radius: 2rem;
+    border-radius: 1.5rem;
     padding-inline: 2.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    box-shafdow: 0 2px 8px rgba(0, 0, 0, 0.25);
     transition: all 0.3s ease;
     cursor: pointer;
 }
@@ -112,7 +112,7 @@ p {
 .features-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
-    background-color: var(--accent-color2);
+    background-color: var(--accent-color1_5);
     color: white;
 }
 
@@ -157,22 +157,25 @@ p {
 
 /***************** FAQ STYLE ******************/
 .FAQs {
-    width: fit-content;
+    padding-inline: 4rem;
 }
 
 .FAQ-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    width: 100%;
+    overflow-x: auto;
+    gap: 1.3rem;
 }
 
 .FAQ-card {
     font-size: 12px;
-    width: 550px;
+    width: 260px;
+    min-width: 260px;
     padding: 2rem;
     border: 1px solid var(--accent-color1);
     border-radius: 1rem;
     background-color: var(--accent-color1);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    box-shadgow: 0 2px 8px rgba(0, 0, 0, 0.25);
     transition: all 0.3s ease;
     cursor: pointer;
 
@@ -180,22 +183,15 @@ p {
 
 .FAQ-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 1.8px 10px rgba(0, 0, 0, 0.35);
 }
 
 .FAQ-card h6 {
-    border-bottom: 1px solid #262626;
+    border-bottom: 1px solid #adadadbb;
 }
 
-.FAQ-btn {
-    background: #1D9B5E;
-    color: #fff;
-    border: none;
-    border-radius: 2rem;
-    font-size: 13px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: fit-content;
+.FAQ-card p {
+    line-height: 1.7;
 }
 
 
