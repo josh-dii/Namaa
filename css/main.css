@@ -164,7 +164,7 @@ p {
     display: flex;
     width: 100%;
     overflow-x: auto;
-    gap: 1.3rem;
+    gap: 1rem;
 }
 
 .FAQ-card {
@@ -188,10 +188,11 @@ p {
 
 .FAQ-card h6 {
     border-bottom: 1px solid #adadadbb;
+    line-height: 1.4;
 }
 
 .FAQ-card p {
-    line-height: 1.7;
+    line-height: 1.8;
 }
 
 
