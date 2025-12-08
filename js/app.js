@@ -45,17 +45,15 @@ let dashboardPage = document.querySelector('#dashboard')
 let depositPage = document.querySelector('#deposit')
 let transferPage = document.querySelector('#transfer')
 let withdrawPage = document.querySelector('#withdraw')
-let changePwdPage = document.querySelector('#changePwd')
 let payBillsPage = document.querySelector('#payBills')
 let signUpPage = document.querySelector('#signUp')
 let settingsPage = document.querySelector('#settings')
-let asidePage = document.querySelector('#aside')
 let forgotPasswordPage = document.querySelector('#forgotPassword')
 
 
 
 
-
+//aside-nav
 dashboardNav.addEventListener("click", function () {
   showPage(dashboardPage)
 })
@@ -63,9 +61,8 @@ dashboardNav.addEventListener("click", function () {
 depositNav.addEventListener("click", function () {
   showPage(depositPage)
 })
- 
 transferNav.addEventListener("click", function () {
-  showPage(transferPage)
+  showPage(transferPage);
 })
 
 withdrawNav.addEventListener("click", function () {
@@ -82,16 +79,11 @@ payBillsNav.addEventListener("click", function () {
 
 
 
-sendBtn.addEventListener("click", function () {
-  newBalPage.classList.remove('d-none');
-  showGlobalBackBtn()
-})
 
-withdrawalBtn.addEventListener("click", function () {
-  withdrawPage.classList.add('d-none');
-  withdraw();
-  newBalPage.classList.remove('d-none');
-})
+loginBtn.addEventListener("click", function () {
+  console.log("button has been clicked")
+  login()
+});
 
 signUpBtn.addEventListener("click", function () {
   signUpPage.classList.add('d-none')
@@ -99,8 +91,20 @@ signUpBtn.addEventListener("click", function () {
 })
 
 toSignUpBtn.addEventListener("click", function () {
-  signUpPage.classList.remove('d-none')
-  loginPage.classList.add('d-none');
+  showPage(signUpPage);
+})
+
+toLoginBtn.addEventListener("click", function () {
+  showPage(loginPage);
+})
+
+forgotPasswordBtn.addEventListener("click", function () {
+  showPage(forgotPasswordPage);
+})
+
+withdrawalBtn.addEventListener("click", function () {
+  withdrawPage.classList.add('d-none');
+  withdraw();
 })
 
 changeBtn.addEventListener("click", function () {
@@ -123,39 +127,6 @@ forgotPasswordBtn.addEventListener("click", function () {
 signOutBtn.addEventListener("click", function() {
   showPage(loginPage);
 })
-
-let selectedMethod = '';
-
-depositMethods.forEach(btn => {
-    btn.addEventListener("click", () => {
-        depositMethods.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        selectedMethod = btn.textContent;
-
-        if (depositAmountInput.value) nextStepBtn.classList.remove("d-none");
-    });
-});
-
-depositAmountInput.addEventListener("input", () => {
-    if (depositAmountInput.value && selectedMethod) nextStepBtn.classList.remove("d-none");
-    else nextStepBtn.classList.add("d-none");
-});
-
-nextStepBtn.addEventListener("click", () => {
-    if (!depositAmountInput.value || !selectedMethod) return;
-    alert(
-        `Deposit Amount: ₦${parseFloat(depositAmountInput.value).toLocaleString()}\n` +
-        `Deposit Method: ${selectedMethod}`
-    );
-});
-
-
-
-
-
-
-
-
 
 
 
@@ -264,6 +235,9 @@ function addLeftMarginSpaceToMainContent(addLeftMarginSpace = true) {
   }
 }
 
+
+//Base Functions
+
 function login() {
   let email = document.querySelector('#emailInput').value.trim()
   let password = document.querySelector('#passwordInput').value.trim()
@@ -284,25 +258,6 @@ function login() {
   return foundUser;
 }
 
-//get current user id after being logged in
-//get the current user using the current user id in step 1
-// confirm if the old password passed into the form exists 
-//replace the old password with the nw password passed
-
-function greetUser(name) {
-  const hour = new Date().getHours();
-  let time;
-  if (hour >= 0 && hour < 12) {
-    time = "Morning";
-  }
-  else if (hour >= 12 && hour < 17) {
-    time = "Afternoon";
-  }
-  else {
-    time = "Evening";
-  }
-  console.log(`Good ${time}, ${name}`);
-}
 
 function transfer() {
   let currentUser = bankUsers.find(
@@ -312,12 +267,18 @@ function transfer() {
   let email = document.querySelector('#transferEmail').value.trim()
   let transferAmount = Number(document.querySelector('#transferInput').value.trim());
   let balance = currentUser.balance
+
+  let receipientEmail = bankUsers.find(
+    user => user.email.toLowerCase() === email
+  );
+
   transferInput.value = "";
-  if (currentUser && transferAmount <= balance ) {
+  if (currentUser && receipientEmail && transferAmount <= balance ) {
     let newBalance = balance - transferAmount
     currentUser.balance = newBalance;
-    newBalance.textContent = `Hello ${currentUser.firstName}, your new balance is ₦${currentUser.balance.toLocaleString()}`;
+    alert("Transaction successful");
   }
+  
 
 }
 function withdraw() {
@@ -332,14 +293,14 @@ function withdraw() {
 
     let newBalance = balance - withdrawAmount
     currentUser.balance = newBalance;
-    newBalPage.textContent = `Hello ${currentUser.firstName}, your new balance is ₦${currentUser.balance.toLocaleString()}`;
+    alert("Transaction Successful.")
   }
   else if (currentUser && withdrawAmount > 0 && withdrawAmount > balance) {
     alert("insufficient funds.")
     return;
   }
   else {
-    alert("Please enter a valid amount.");
+    alert("Please fill in the correct details");
     return;
   }
 }
