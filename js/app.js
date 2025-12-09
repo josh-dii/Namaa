@@ -25,11 +25,13 @@ let transferNav = document.querySelector('#transferBtn')
 let withdrawNav = document.querySelector('#withdrawBtn')
 let payBillsNav = document.querySelector('#payBillsBtn')
 let settingsNav = document.querySelector('#settingsBtn')
+let profileNav = document.querySelector('#profileBtn')
 
 //form submittion buttons
 let loginBtn = document.querySelector('#login-btn')
 let toSignUpBtn = document.querySelector('#toSignUpBtn')
-let sendBtn = document.querySelector('#sendBtn')
+let depositAmountBtn = document.querySelector('#depositAmountBtn')
+let transferAmountBtn = document.querySelector('#transferAmountBtn')
 let withdrawalBtn = document.querySelector('#withdrawalBtn')
 let changeBtn = document.querySelector('#changeBtn')
 let signUpBtn = document.querySelector('#signUpBtn')
@@ -77,6 +79,10 @@ payBillsNav.addEventListener("click", function () {
   showPage(payBillsPage)
 })
 
+profileNav.addEventListener("click", function () {
+  showPage(settingsPage)
+})
+
 
 
 
@@ -102,6 +108,14 @@ forgotPasswordBtn.addEventListener("click", function () {
   showPage(forgotPasswordPage);
 })
 
+depositAmountBtn.addEventListener("click", function () {
+  deposit();
+})
+
+transferAmountBtn.addEventListener("click", function () {
+  transfer();
+})
+
 withdrawalBtn.addEventListener("click", function () {
   withdrawPage.classList.add('d-none');
   withdraw();
@@ -110,19 +124,6 @@ withdrawalBtn.addEventListener("click", function () {
 changeBtn.addEventListener("click", function () {
   changePwd();
 });
-
-loginBtn.addEventListener("click", function () {
-  console.log("button has been clicked")
-  login()
-});
-
-toLoginBtn.addEventListener("click", function () {
-  showPage(loginPage);
-})
-
-forgotPasswordBtn.addEventListener("click", function () {
-  showPage(forgotPasswordPage);
-})
 
 signOutBtn.addEventListener("click", function() {
   showPage(loginPage);
