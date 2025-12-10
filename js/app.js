@@ -1,12 +1,16 @@
+import { loadDatabase, findUserByEmail, addUser  } from "./dbRepository.js";
+import { nigeriaBanks, parseFullName, createWallets } from "./Utility.js"
 
+const db = await loadDatabase();
+//let storedUsers = JSON.parse(localStorage.getItem("bankUsers"));
 
-import { nigeriaBanks, bankUsers } from "./Db.js"
+// update localStorage from Db.js
+// localStorage.setItem("bankUsers", JSON.stringify(bankUsers));
 
 let currentPageIndex = 0;
 let currentUserId;
 
 const banksDropdownList = document.getElementById("bankSelect");
-
 
 nigeriaBanks.forEach((bank, i) => {
   const option = document.createElement("option");
@@ -33,9 +37,9 @@ let sendBtn = document.querySelector('#sendBtn')
 let withdrawalBtn = document.querySelector('#withdrawalBtn')
 let changeBtn = document.querySelector('#changeBtn')
 let signUpBtn = document.querySelector('#signUpBtn')
-let toLoginBtn = document.querySelector('#toLogin')
+let loginNavBtns = document.querySelectorAll('[name="loginNavBtn"]') //slected using name attribute so as to avoid dupplicate button elements that do the samething - navigate to the login screen. 
 let forgotPasswordBtn = document.querySelector('#forgotPasswordBtn')
- let signOutBtn = document.querySelector('#signOutBtn')
+let signOutBtn = document.querySelector('#signOutBtn')
 
 
 
@@ -53,7 +57,25 @@ let forgotPasswordPage = document.querySelector('#forgotPassword')
 
 
 
-//aside-nav
+//----------------Navigation Buttons events-------------------------
+loginNavBtns.forEach((element) => {
+  element.addEventListener("click", function () {
+    showPage(loginPage);
+  });
+});
+
+forgotPasswordBtn.addEventListener("click", function () {
+  showPage(forgotPasswordPage);
+});
+
+signOutBtn.addEventListener("click", function() {
+  showPage(loginPage);
+});
+
+
+
+
+//---------aside-nav------------------------------------------------
 dashboardNav.addEventListener("click", function () {
   showPage(dashboardPage)
 })
@@ -79,66 +101,81 @@ payBillsNav.addEventListener("click", function () {
 
 
 
-
+//------------------Controllers-------------------------------------------------
 loginBtn.addEventListener("click", function () {
-  console.log("button has been clicked")
   login()
 });
 
-signUpBtn.addEventListener("click", function () {
-  signUpPage.classList.add('d-none')
-  loginPage.classList.remove('d-none');
-})
+//TODO: Not Working.
+signUpBtn.addEventListener("click", async function () {
+  let fullName = document.querySelector("#signUpFullName").value.trim();
+  let email = document.querySelector("#signUpEmail").value.trim();
+  //let phone = document.querySelector("#signUpPhone").value.trim();
+  let password = document.querySelector("#signUpPassword").value.trim();
+  let confirmPassword = document.querySelector("#signUpConfirmPassword").value.trim();
+
+  if (!fullName || !email || !password || !confirmPassword) {
+    alert("Please fill all fields");
+    return;
+  }
+
+  if (password != confirmPassword) {
+    alert("Password and Confirm Password fields must match.");
+    return;
+  }
+  try {
+    let newUser = await createUser(fullName, email, password);
+
+    //await sendVerificationEmail(newUser);
+
+    location.href = `app.html#login?email=${encodeURIComponent(newUser.email)}&sent=true`;
+    showPage(loginPage);
+  } catch (error) {
+    alert(error.message)
+    console.log(error)
+  }
+  
+});
 
 toSignUpBtn.addEventListener("click", function () {
   showPage(signUpPage);
-})
-
-toLoginBtn.addEventListener("click", function () {
-  showPage(loginPage);
-})
-
-forgotPasswordBtn.addEventListener("click", function () {
-  showPage(forgotPasswordPage);
-})
+});
 
 withdrawalBtn.addEventListener("click", function () {
   withdrawPage.classList.add('d-none');
   withdraw();
-})
+});
 
 changeBtn.addEventListener("click", function () {
   changePwd();
 });
 
-loginBtn.addEventListener("click", function () {
-  console.log("button has been clicked")
-  login()
-});
 
-toLoginBtn.addEventListener("click", function () {
-  showPage(loginPage);
-})
-
-forgotPasswordBtn.addEventListener("click", function () {
-  showPage(forgotPasswordPage);
-})
-
-signOutBtn.addEventListener("click", function() {
-  showPage(loginPage);
-})
 
 
 
 detectPageToShow()
+
+//----------HELPERS------------------------
+
 function detectPageToShow() {
   let currentPage = location.hash.substring(1);
+  let params = new URLSearchParams(location.hash.split("?")[1]);
+
   switch (currentPage) {
     case "login":
+      let email = params.get("email");
+      let verified = params.get("verified");
+
+      if (email) document.querySelector("#emailInput").value = email;
+      if (verified) alert("Email verified successfully!");
       showPage(loginPage);
       break;
     case "register":
       showPage(signUpPage);
+      break;
+    case "verifyEmail":
+      verifyEmailFromUrl();
       break;
     case "forgotPassword":
       showPage(forgotPasswordPage);
@@ -166,7 +203,6 @@ function detectPageToShow() {
       break;
   }
 }
-
 
 /**
   * shows a section from the list of section in a page and hide the other section
@@ -235,32 +271,92 @@ function addLeftMarginSpaceToMainContent(addLeftMarginSpace = true) {
   }
 }
 
+async function sendVerificationEmail(user) {
+  let verifyUrl = `http://127.0.0.1:5501/app.html#verifyEmail?email=${encodeURIComponent(user.email)}`;
 
-//Base Functions
+  let payload = {
+    email: user.email,
+    subject: "Verify your email",
+    displayName: "NAMAA"
+  };
 
+  try {
+    let response = await fetch("https://smslive247api.readme.io/v5.0/reference/tokencreateemail", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer YOUR_API_TOKEN"
+      },
+      body: JSON.stringify(payload)
+    });
+    var res = await response.json();
+
+    //`Click the link below to verify:\n${verifyUrl}`
+  }
+  catch (err) {
+    alert("An error happened while trying to send OTP to your email address. Please try again later.")
+    //console.error(err);
+  }
+}
+
+
+//---------------Base Functions-----------------------------------------------------------
 function login() {
   let email = document.querySelector('#emailInput').value.trim()
   let password = document.querySelector('#passwordInput').value.trim()
 
-  let foundUser = bankUsers.find(
+  let foundUser = db.bankUsers.find(
     (user) => user.email == email && user.password == password
   )
-  console.log(foundUser)
   if (foundUser) {
-    console.log(foundUser.id)
-    console.log("login successful")
-
+    currentUserId = foundUser.id;
     showPage(dashboardPage);
   }
   else {
     alert('invalid email or password');
   }
-  return foundUser;
 }
 
+async function createUser(fullName, email, password) {
+  let db = await loadDatabase();
+
+  // 1. Prevent duplicates
+  if ( db.bankUsers.some(u => u.email.toLowerCase() === email.toLowerCase())) {
+    throw new Error("User already exists");
+  }
+
+  // 2. Parse names
+  let { firstName, lastName } = parseFullName(fullName);
+
+  // 3. Generate account number
+  let accountNumber = Date.now();
+
+  // 4. Generate wallets
+  let wallets = createWallets(accountNumber);
+
+  // 6. Build the final user object
+  let newUser = {
+    firstName,
+    lastName,
+    email,
+    emailVerified: false,
+    phone: "",
+    gender: "",
+    address: "",
+    DOB: "",
+    accountNumber,
+    password,
+    wallets,
+    electricity: {},
+    water: {}
+  };
+
+  // 7. Save user
+  return await addUser(newUser);
+}
 
 function transfer() {
-  let currentUser = bankUsers.find(
+  let currentUser = db.bankUsers.find(
     (user) => user.id === currentUserId
   );
 
@@ -268,7 +364,7 @@ function transfer() {
   let transferAmount = Number(document.querySelector('#transferInput').value.trim());
   let balance = currentUser.balance
 
-  let receipientEmail = bankUsers.find(
+  let receipientEmail = db.bankUsers.find(
     user => user.email.toLowerCase() === email
   );
 
@@ -281,8 +377,9 @@ function transfer() {
   
 
 }
+
 function withdraw() {
-  let currentUser = bankUsers.find(
+  let currentUser = db.bankUsers.find(
     (user) => user.id === currentUserId
   );
 
@@ -307,7 +404,7 @@ function withdraw() {
 
 function changePwd() {
 
-  let currentUser = bankUsers.find(
+  let currentUser = db.bankUsers.find(
     (user) => user.id === currentUserId
   );
 
@@ -330,5 +427,18 @@ function changePwd() {
     console.log("user not found")
   }
 };
+
+function verifyEmailFromUrl() {
+  let params = new URLSearchParams(location.hash.split("?")[1]);
+  let email = params.get("email");
+
+  let user = db.bankUsers.find(u => u.email === email);
+  if (user) {
+    user.emailVerified = true;
+    localStorage.setItem("bankUsers", JSON.stringify(db.bankUsers));
+  }
+
+  location.href = `app.html#login?verified=true&email=${encodeURIComponent(email)}`;
+}
 
 

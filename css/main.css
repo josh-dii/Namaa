@@ -7,6 +7,7 @@
 
 :root {
     --accent-color1: #F2F5F7;
+     --accent-color1_5: #467c62;
     /* border color */
     --accent-color2: #1D9B5E;
     /* btn-color */
@@ -15,7 +16,7 @@
 body {
     font-size: 16px;
     background-color: #f8f6f6;
-    color: black;
+    color: #2b2b2b;
     max-width: 1440px;
     margin-inline: auto;
     font-family: Poppins, sans-serif;
@@ -28,7 +29,7 @@ h3 {
     margin: 0;
     padding: 0;
     font-weight: semi-bold;
-    color: #0A1519;
+    color: #0a1519d4;
 }
 
 p {
@@ -52,14 +53,20 @@ p {
     font-size: 15px;
 }
 
-.nav-left-btn:hover {
+.btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+    background-color: var(--accent-color2);
     color: var(--accent-color1);
 }
 
-.nav-right-btn:hover {
-    color: var(--accent-color1);
+.btn:active {
+    transform: translateY(-2px) scale(0.98);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     background-color: var(--accent-color2);
+    border-color: #d9d9d9;
 }
+
 /***************** HERO STYLE ******************/
 .hero {
     background-color: #0f2028;
@@ -83,10 +90,6 @@ p {
     color: #d9d9d9;
 }
 
-.left-hero-btn:hover {
-    background-color: var(--accent-color2);
-    color: var(--accent-color1);
-}
 
 /***************** FEATURES STYLE ******************/
 .features-container {
@@ -99,10 +102,9 @@ p {
     width: 340px;
     padding-block: 2.5rem;
     background-color: var(--accent-color1);
-    border: 1px solid var(--accent-color1);
-    border-radius: 2rem;
+    border-radius: 1.5rem;
     padding-inline: 2.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    box-shafdow: 0 2px 8px rgba(0, 0, 0, 0.25);
     transition: all 0.3s ease;
     cursor: pointer;
 }
@@ -110,6 +112,8 @@ p {
 .features-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    background-color: var(--accent-color1_5);
+    color: white;
 }
 
 .features-card p {
@@ -128,7 +132,6 @@ p {
 
 .currency-btn:hover {
     background-color: var(--accent-color2);
-    color: var(--accent-color1);
 }
 
 .benefit-image {
@@ -154,22 +157,25 @@ p {
 
 /***************** FAQ STYLE ******************/
 .FAQs {
-    width: fit-content;
+    padding-inline: 4rem;
 }
 
 .FAQ-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    width: 100%;
+    overflow-x: auto;
+    gap: 1rem;
 }
 
 .FAQ-card {
     font-size: 12px;
-    width: 550px;
+    width: 260px;
+    min-width: 260px;
     padding: 2rem;
     border: 1px solid var(--accent-color1);
     border-radius: 1rem;
     background-color: var(--accent-color1);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    box-shadgow: 0 2px 8px rgba(0, 0, 0, 0.25);
     transition: all 0.3s ease;
     cursor: pointer;
 
@@ -177,33 +183,22 @@ p {
 
 .FAQ-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 1.8px 10px rgba(0, 0, 0, 0.35);
 }
 
 .FAQ-card h6 {
-    border-bottom: 1px solid #262626;
-    margin-bottom: 0rem;
+    border-bottom: 1px solid #adadadbb;
+    line-height: 1.4;
 }
 
 .FAQ-card p {
-    font-size: 14px;
-}
-
-.FAQ-btn {
-    background: #1D9B5E;
-    color: #fff;
-    border: none;
-    border-radius: 2rem;
-    font-size: 13px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: fit-content;
+    line-height: 1.8;
 }
 
 
 /***************** FOOTER STYLE ******************/
 footer {
-    background-image: url(../images/footer-pattern.svg);
+    background-image: url(/images/footer-pattern.svg);
     background-position: 0% -400px;
     background-color: #0A151A;
     padding-top: 5rem;
@@ -215,22 +210,6 @@ footer {
     border-bottom: 1px solid #ffffff66;
     padding-inline: 5rem;
 }
-
-
-
-  /* Remove Bootstrap default dropdown arrow */
-  .hamburger-btn::after {
-      display: none !important;
-  }
-
-  /* Make button background clean */
-  .hamburger-btn {
-      padding: 5px 8px;
-      background: transparent !important;
-      border: none !important;
-      box-shadow: none !important;
-  }
-
 
 
 
@@ -265,10 +244,6 @@ footer {
         display: none !important;
     }
 
-    .menu {
-        display: block !important;
-    }
-
     .hero-text {
         width: 550px !important;
     }
@@ -280,7 +255,7 @@ footer {
 
 @media (max-width: 575px) {
     .hero {
-        height: 100vh;
+        height: 130vh;
         min-height: 650px;
     }
 
@@ -308,6 +283,7 @@ footer {
 
     .hero {
         min-height: 500px;
+        height: 125vh;
     }
 
     .hero-text {
@@ -326,7 +302,6 @@ footer {
 
     .hero-btn {
         flex-direction: column;
-        align-items: center;
     }
 }
 
@@ -373,7 +348,7 @@ footer {
 
 @media (max-width: 375px) {
     .features-text h2 {
-        font-size: 25px !important;
+        font-size: 30px !important;
     }
 
     .features-card {
@@ -616,7 +591,6 @@ footer {
 @media (max-width: 835px) {
     .footer-main {
         flex-direction: column;
-        padding-inline: 0rem;
     }
 
     .footer-brand {
