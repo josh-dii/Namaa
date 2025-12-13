@@ -27,7 +27,7 @@
         </div>
 
         <div class=" d-flex flex-column gap-4">
-            <a href="./app.html#dashboard" id="dashboardBtn"
+            <a href="./app.html#dashboard" id="dashboardNav"
                 class="text-black text-decoration-none aside-btn nav-text text-start d-flex align-items-center gap-2 p-0 bg-transparent">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-dashboard size-5 shrink-0 opacity-80 group-hover:opacity-100 
@@ -39,7 +39,7 @@
                 </svg>
                 <span>Dashboard</span>
             </a>
-            <a href="./app.html#deposit" id="depositBtn"
+            <a href="./app.html#deposit" id="depositNav"
                 class="text-black text-decoration-none aside-btn nav-text text-start d-flex align-items-center gap-2 p-0 bg-transparent">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -51,18 +51,7 @@
                 </svg>
                 <span>Deposit</span>
             </a>
-            <a href="./app.html#withdraw" id="withdrawBtn"
-                class="text-black text-decoration-none aside-btn nav-text text-start d-flex align-items-center gap-2 p-0 bg-transparent">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="lucide lucide-trending-up size-5 shrink-0 opacity-80 group-hover:opacity-100 group-hover:text-accent-foreground"
-                    aria-hidden="true">
-                    <path d="M16 7h6v6"></path>
-                    <path d="m22 7-8.5 8.5-5-5L2 17"></path>
-                </svg>
-                <span>Withdraw</span>
-            </a>
-            <a href="./app.html#transfer" id="transferBtn"
+            <a href="./app.html#transfer" id="transferNav"
                 class="btn aside-btn nav-text text-start d-flex align-items-center gap-2 p-0 bg-transparent">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -75,20 +64,18 @@
                 </svg>
                 <span>Transfer</span>
             </a>
-            <a href="./app.html#changePassword" id="changePwdsBtn"
-                class="text-black text-decoration-none aside-btn nav-text text-start d-flex d-none align-items-center gap-2 p-0 bg-transparent">
+            <a href="./app.html#withdraw" id="withdrawNav"
+                class="text-black text-decoration-none aside-btn nav-text text-start d-flex align-items-center gap-2 p-0 bg-transparent">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="lucide lucide-users size-5 shrink-0 opacity-80 group-hover:opacity-100 group-hover:text-accent-foreground"
+                    class="lucide lucide-trending-up size-5 shrink-0 opacity-80 group-hover:opacity-100 group-hover:text-accent-foreground"
                     aria-hidden="true">
-                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-                    <path d="M16 3.128a4 4 0 0 1 0 7.744"></path>
-                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
-                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M16 7h6v6"></path>
+                    <path d="m22 7-8.5 8.5-5-5L2 17"></path>
                 </svg>
-                <span>Change Password</span>
+                <span>Withdraw</span>
             </a>
-            <a href="./app.html#payBills" id="payBillsBtn"
+            <a href="./app.html#payBills" id="payBillsNav"
                 class="text-black text-decoration-none aside-btn nav-text text-start d-flex align-items-center gap-2 p-0 bg-transparent">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -102,7 +89,7 @@
                 </svg>
                 <span>Pay bills</span>
             </a>
-            <a href="./app.html#settings" id="settingsBtn"
+            <a href="./app.html#settings" id="settingsNav"
                 class="text-black text-decoration-none aside-btn nav-text text-start d-flex align-items-center gap-2 p-0 bg-transparent">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -126,9 +113,8 @@
                     data-bs-toggle="dropdown" aria-expanded="false" role="button">
 
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <button id="profileBtn" class="dropdown-item border-bottom">Profile</button>
-                    <li><a href=""></a></li>
-                    <li><a class="dropdown-item logout" id="signOutBtn" href="./app.html#login">Log out</a></li>
+                    <a href="./app.html#settings" id="profileBtn" class="dropdown-item border-bottom">Profile</a>
+                    <a href="./app.html#login" id="signOutBtn" class="dropdown-item logout">Log out</a>
                 </ul>
             </div>
         </header>
@@ -168,7 +154,8 @@
 
                 <span class="d-flex gap-2 text-center mt-3 mb-0">
                     Already have an account?
-                    <a href="#login" name="loginNavBtn" class="text-decoration-none fw-semibold" style="color: #1D9B5E;">Log
+                    <a href="#login" name="loginNavBtn" class="text-decoration-none fw-semibold"
+                        style="color: #1D9B5E;">Log
                         In</a>
                 </span>
             </div>
@@ -205,14 +192,12 @@
                 <span class="d-flex gap-2 text-center mt-3 mb-0 justify-content-center">
                     Don’t have an account?
                     <a href="#register" id="toSignUpBtn" class="text-decoration-none fw-semibold"
-                        style="color: #1D9B5E;">Sign
-                        Up</a>
+                        style="color: #1D9B5E;">Sign Up</a>
                 </span>
             </div>
         </section>
 
-        <section id="forgotPassword"
-            class="forgot-password d-flex d-none justify-content-center align-items-center my-4">
+        <section id="forgotPassword" class="forgot-password d-flex d-none justify-content-center align-items-center my-4">
             <div class="forgot-box d-flex flex-column gap-3 shadow-sm px-4 py-4 bg-white rounded">
                 <div class="d-flex flex-column gap-1">
                     <h4 class="text-center mb-0">Forgot Password</h4>
@@ -232,7 +217,8 @@
 
                 <span class="d-flex gap-2 text-center mt-3 mb-0 justify-content-center">
                     Remember your password?
-                    <a href="#login" name="loginBtn" class="text-decoration-none fw-semibold" style="color: #1D9B5E;">Log In</a>
+                    <a href="#login" name="loginBtn" class="text-decoration-none fw-semibold"
+                        style="color: #1D9B5E;">Log In</a>
                 </span>
             </div>
         </section>
@@ -403,24 +389,25 @@
                             class="btn bg-white btn-outline-dark py-2 text-start rounded-3 deposit-method">USSD</button>
                     </div>
                 </div>
-                <button id="depositAmountBtn" class="btn align-self-center text-white mt-2 d-none">Deposit</button>
+                <button id="depositBtn" class="btn align-self-center text-white mt-2 d-none">Deposit</button>
             </div>
         </section>
 
         <section id="transfer" class="transfer d-flex d-none flex-column gap-3 p-5 rounded-4 shadow-sm bg-white">
             <h5 class="mb-0">Transfer</h5>
+            <input type="text" id="transferEmail" class="form-control" placeholder="Enter recipient email" required>
+            <input type="number" class="form-control" id="transferAmount" placeholder="Enter amount">
+            <button id="transferBtn" class="btn align-self-end text-white">Send</button>
+        </section>
+
+        <section id="withdraw" class="withdraw d-flex d-none flex-column gap-3 p-5 rounded-4 shadow-sm bg-white">
+            <h5 class="mb-0">Withdrawal</h5>
             <select id="bankSelect" class="form-select">
                 <option selected>Select Bank</option>
             </select>
             <input type="number" class="form-control" id="accountnumberinput" placeholder="Enter account number">
             <input type="number" class="form-control" id="amountinput" placeholder="Enter amount">
-            <button id="transferAmountBtn" class="transfer-btn btn align-self-end text-white">Send</button>
-        </section>
-
-        <section id="withdraw" class="withdraw d-flex d-none flex-column gap-3 p-5 rounded-4 shadow-sm bg-white">
-            <h5 class="mb-0">Withdrawal</h5>
-            <input type="number" class="form-control" id="withdrawInput" placeholder="Enter amount">
-            <button id="withdrawalBtn" class="btn align-self-end text-white">Withdraw</button>
+            <button id="withdrawBtn" class="withdraw-btn btn align-self-end text-white">Withdraw</button>
         </section>
 
         <section id="payBills" class="payBills d-flex d-none flex-column gap-3 p-5 rounded-4 shadow-sm bg-white"
@@ -492,21 +479,21 @@
                             <div>
                                 <h6 style="font-size: 14px;">First Name</h6>
                                 <input type="text" class="form-control py-2 px-3" id="firstNameInput"
-                                    placeholder="John">
+                                    placeholder="">
                             </div>
                             <div>
                                 <h6 style="font-size: 14px;">Last Name</h6>
-                                <input type="text" class="form-control py-2 px-3" id="lastNameInput" placeholder="Doe">
+                                <input type="text" class="form-control py-2 px-3" id="lastNameInput" placeholder="">
                             </div>
                         </div>
                         <div>
                             <h6 style="font-size: 14px;">Email</h6>
-                            <input type="text" class="form-control py-2 px-3" id="signUpEmailInput" placeholder="Email">
+                            <input type="text" class="form-control py-2 px-3" id="signUpEmailInput" placeholder="">
                         </div>
                         <div>
                             <h6 style="font-size: 14px;">Phone Number</h6>
                             <input type="tel" class="form-control py-2 px-3" id="phoneNumberInput"
-                                placeholder="Phone number">
+                                placeholder="">
                         </div>
                     </div>
                     <button class="btn text-white align-self-end mt-3">Save changes</button>

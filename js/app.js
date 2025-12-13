@@ -23,20 +23,20 @@ let bodyElement = document.querySelector("body");
 let mainElement = document.querySelector("main")
 
 //page navigation buttons
-let dashboardNav = document.querySelector('#dashboardBtn')
-let depositNav = document.querySelector('#depositBtn')
-let transferNav = document.querySelector('#transferBtn')
-let withdrawNav = document.querySelector('#withdrawBtn')
-let payBillsNav = document.querySelector('#payBillsBtn')
-let settingsNav = document.querySelector('#settingsBtn')
+let dashboardNav = document.querySelector('#dashboardNav')
+let depositNav = document.querySelector('#depositNav')
+let transferNav = document.querySelector('#transferNav')
+let withdrawNav = document.querySelector('#withdrawNav')
+let payBillsNav = document.querySelector('#payBillsNav')
+let settingsNav = document.querySelector('#settingsNav')
 let profileNav = document.querySelector('#profileBtn')
 
 //form submittion buttons
 let loginBtn = document.querySelector('#login-btn')
 let toSignUpBtn = document.querySelector('#toSignUpBtn')
-let depositAmountBtn = document.querySelector('#depositAmountBtn')
-let transferAmountBtn = document.querySelector('#transferAmountBtn')
-let withdrawalBtn = document.querySelector('#withdrawalBtn')
+let depositBtn = document.querySelector('#depositBtn')
+let transferBtn = document.querySelector('#transferBtn')
+let withdrawBtn = document.querySelector('#withdrawBtn')
 let changeBtn = document.querySelector('#changeBtn')
 let signUpBtn = document.querySelector('#signUpBtn')
 let loginNavBtns = document.querySelectorAll('[name="loginNavBtn"]') //slected using name attribute so as to avoid dupplicate button elements that do the samething - navigate to the login screen. 
@@ -146,7 +146,15 @@ toSignUpBtn.addEventListener("click", function () {
   showPage(signUpPage);
 });
 
-withdrawalBtn.addEventListener("click", function () {
+depositBtn.addEventListener("click", function () {
+  deposit();
+});
+
+transferBtn.addEventListener("click", function () {
+  transfer();
+});
+
+withdrawBtn.addEventListener("click", function () {
   withdrawPage.classList.add('d-none');
   withdraw();
 });
@@ -366,20 +374,29 @@ function transfer() {
   );
 
   let email = document.querySelector('#transferEmail').value.trim()
-  let transferAmount = Number(document.querySelector('#transferInput').value.trim());
+  let transferAmount = Number(document.querySelector('#transferAmount').value.trim());
   let balance = currentUser.balance
 
-  let receipientEmail = db.bankUsers.find(
+  let recipientEmail = db.bankUsers.find(
     user => user.email.toLowerCase() === email
   );
 
   transferInput.value = "";
-  if (currentUser && receipientEmail && transferAmount <= balance ) {
+  if (currentUser && recipientEmail && transferAmount <= balance ) {
     let newBalance = balance - transferAmount
     currentUser.balance = newBalance;
     alert("Transaction successful");
   }
-  
+  else if (currentUser && !recipientEmail && transferAmount <= balance ) {
+    alert("Recipient not found");
+  }
+  else if (currentUser && recipientEmail && transferAmount > 0 && transferAmount > balance ) {
+    alert("Insufficient Funds");
+  }
+  else {
+    alert("Please fill in the correct details");
+    return;
+  }
 
 }
 
@@ -392,13 +409,12 @@ function withdraw() {
   let balance = currentUser.balance
   withdrawInput.value = "";
   if (currentUser && withdrawAmount <= balance) {
-
     let newBalance = balance - withdrawAmount
     currentUser.balance = newBalance;
     alert("Transaction Successful.")
   }
   else if (currentUser && withdrawAmount > 0 && withdrawAmount > balance) {
-    alert("insufficient funds.")
+    alert("Insufficient Funds.")
     return;
   }
   else {
