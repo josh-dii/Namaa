@@ -235,7 +235,7 @@
                     class="balance-card d-flex justify-content-between align-items-center p-3 shadow-sm rounded bg-white">
                     <div class="d-flex flex-column gap-2">
                         <h5>USD Balance</h5>
-                        <span class="fw-semibold">$2,450.00</span>
+                        <span id="usdBalance" class="fw-semibold">$0.00</span>
                         <small class="text-muted">1 USD = ₦1,560</small>
                     </div>
                 </div>
@@ -245,7 +245,7 @@
                     class="balance-card d-flex justify-content-between align-items-center p-3 shadow-sm rounded bg-white">
                     <div class="d-flex flex-column gap-2">
                         <h5>GBP Balance</h5>
-                        <span class="fw-semibold">£1,870.00</span>
+                        <span id="gbpBalance" class="fw-semibold">£0.00</span>
                         <small class="text-muted">1 GBP = ₦1,940</small>
                     </div>
                 </div>
@@ -255,7 +255,7 @@
                     class="balance-card d-flex justify-content-between align-items-center p-3 shadow-sm rounded bg-white">
                     <div class="d-flex flex-column gap-2">
                         <h5>EUR Balance</h5>
-                        <span class="fw-semibold">€4,000.00</span>
+                        <span id="eurBalance" class="fw-semibold">€0.00</span>
                         <small class="text-muted">1 EUR = ₦1,661</small>
                     </div>
                 </div>
@@ -265,7 +265,7 @@
                     class="balance-card d-flex justify-content-between align-items-center p-3 shadow-sm rounded bg-white">
                     <div class="d-flex flex-column gap-2">
                         <h5>NGN Balance</h5>
-                        <span class="fw-semibold">₦1,450,000.00</span>
+                        <span id="ngnBalance" class="fw-semibold">₦0.00</span>
                         <small class="text-muted">Base currency</small>
                     </div>
                 </div>
@@ -326,41 +326,7 @@
                             </tr>
                         </thead>
 
-                        <tbody style="font-size: 14px;">
-                            <tr>
-                                <td>Idev works</td>
-                                <td>Salary</td>
-                                <td>Nov 9, 2025 - 09:30 AM</td>
-                                <td class="text-success">₦250,000.00</td>
-                            </tr>
-
-                            <tr>
-                                <td>Chukwuma Stores</td>
-                                <td>Transfer</td>
-                                <td>Nov 8, 2025 - 04:12 PM</td>
-                                <td class="text-danger">₦-25,000.00</td>
-                            </tr>
-
-                            <tr>
-                                <td>Item 7Go</td>
-                                <td>POS Payment</td>
-                                <td>Nov 7, 2025 - 07:45 PM</td>
-                                <td class="text-danger">₦-12,345.50</td>
-                            </tr>
-
-                            <tr>
-                                <td>Jumia</td>
-                                <td>Refund</td>
-                                <td>Nov 6, 2025 - 02:05 PM</td>
-                                <td class="text-success">₦5,000.00</td>
-                            </tr>
-
-                            <tr>
-                                <td>Netflix</td>
-                                <td>Subscription</td>
-                                <td>Nov 5, 2025 - 11:00 AM</td>
-                                <td class="text-danger">₦-3,200.00</td>
-                            </tr>
+                        <tbody id="transactionsBody" style="font-size: 14px;">
                         </tbody>
                     </table>
                 </div>
@@ -496,7 +462,7 @@
                                 placeholder="">
                         </div>
                     </div>
-                    <button class="btn text-white align-self-end mt-3">Save changes</button>
+                    <button id="settingsUpdateUser" class="btn text-white align-self-end mt-3">Save changes</button>
                 </div>
                 <div class="password-details form-control d-flex flex-column gap-3 py-4"
                     style="width: 430px; padding-inline: 2rem">

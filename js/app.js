@@ -1,4 +1,4 @@
-import { loadDatabase, findUserByEmail, addUser  } from "./dbRepository.js";
+import { loadDatabase, findUserByEmail, addUser, updateUser  } from "./dbRepository.js";
 import { nigeriaBanks, parseFullName, createWallets } from "./Utility.js"
 
 const db = await loadDatabase();
@@ -8,7 +8,7 @@ const db = await loadDatabase();
 // localStorage.setItem("bankUsers", JSON.stringify(bankUsers));
 
 let currentPageIndex = 0;
-let currentUserId;
+let currentUserId = Number(localStorage.getItem("currentUserId")) || null;
 
 const banksDropdownList = document.getElementById("bankSelect");
 
@@ -71,6 +71,8 @@ forgotPasswordBtn.addEventListener("click", function () {
 });
 
 signOutBtn.addEventListener("click", function() {
+  localStorage.removeItem("currentUserId");
+  currentUserId = null;
   showPage(loginPage);
 });
 
@@ -111,7 +113,7 @@ loginBtn.addEventListener("click", function () {
   login()
 });
 
-//TODO: Not Working.
+
 signUpBtn.addEventListener("click", async function () {
   let fullName = document.querySelector("#signUpFullName").value.trim();
   let email = document.querySelector("#signUpEmail").value.trim();
@@ -159,7 +161,30 @@ withdrawBtn.addEventListener("click", function () {
   withdraw();
 });
 
-changeBtn.addEventListener("click", function () {
+updateUserProfileBtn.addEventListener("click", async () => {
+  let user = await getCurrentUser();
+  if (!user) return alert("User not found");
+
+  let firstName = document.getElementById("settingsFirstName").value.trim();
+  let lastName = document.getElementById("settingsLastName").value.trim();
+  let phone = document.getElementById("settingsPhone").value.trim();
+
+  // Basic validation
+  if (!firstName || !lastName || !phone) {
+    alert("First name, last name and phone cannot be empty");
+    return;
+  }
+
+  try {
+    let updatedUser = await updateUserProfile(currentUserId, firstName, lastName, phone );
+    alert("Profile updated successfully!");
+  } catch (error) {
+    alert(error.message);
+  }
+  
+});
+
+changePasswordBtn.addEventListener("click", function () {
   changePwd();
 });
 
@@ -174,6 +199,11 @@ detectPageToShow()
 function detectPageToShow() {
   let currentPage = location.hash.substring(1);
   let params = new URLSearchParams(location.hash.split("?")[1]);
+
+  let savedUserId = Number(localStorage.getItem("currentUserId"));
+  if (savedUserId) {
+    currentUserId = savedUserId;
+  }
 
   switch (currentPage) {
     case "login":
@@ -236,6 +266,13 @@ function showPage(pageToShow) {
     centerBodyElementItems(false);
     addVerticalSpaceToMainContent(true);
     addLeftMarginSpaceToMainContent(true);
+
+    if (pageToShow === dashboardPage) {
+      updateDashboard();  // ← update dashboard
+    }
+    else if(pageToShow === settingsPage) {
+      populateSettings();    // ← Populate settings form
+    }
   }
 
   // globalBackBtn.classList.add('d-none')
@@ -312,6 +349,72 @@ async function sendVerificationEmail(user) {
   }
 }
 
+async function getCurrentUser() {
+  let db = await loadDatabase();
+  return db.bankUsers.find(u => u.id === currentUserId);
+}
+
+async function updateDashboard() {
+  let user = await getCurrentUser();
+  if (!user) return;
+
+  // ---- Balances ----
+  document.getElementById("usdBalance").textContent =
+    `$${user.wallets.USD.balance.toLocaleString(undefined, { minimumFractionDigits: 2 })}`;
+
+  document.getElementById("gbpBalance").textContent =
+    `£${user.wallets.GBP.balance.toLocaleString(undefined, { minimumFractionDigits: 2 })}`;
+
+  document.getElementById("eurBalance").textContent =
+    `€${user.wallets.EUR.balance.toLocaleString(undefined, { minimumFractionDigits: 2 })}`;
+
+  document.getElementById("ngnBalance").textContent =
+    `₦${user.wallets.NGN.balance.toLocaleString(undefined, { minimumFractionDigits: 2 })}`;
+
+  // ---- Transactions ----
+  let tbody = document.getElementById("transactionsBody");
+  tbody.innerHTML = ""; // clear previous items
+
+  let allTx = [
+    ...user.wallets.NGN.transactions,
+    ...user.wallets.USD.transactions,
+    ...user.wallets.GBP.transactions,
+    ...user.wallets.EUR.transactions
+  ];
+
+  // Sort by date descending
+  allTx.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+  allTx.slice(0, 5).forEach(tx => {
+    let amountSign = tx.type === "Deposit" || tx.type === "FX Conversion" || tx.type === "Refund"
+      ? "text-success"
+      : "text-danger";
+
+    let row = `
+      <tr>
+        <td>${tx.description}</td>
+        <td>${tx.type}</td>
+        <td>${new Date(tx.date).toLocaleString()}</td>
+        <td class="${amountSign}">
+          ${tx.currency === "NGN" ? "₦" : ""}${tx.amount.toLocaleString()}
+        </td>
+      </tr>
+    `;
+
+    tbody.insertAdjacentHTML("beforeend", row);
+  });
+}
+
+async function populateSettings() {
+  let user = await getCurrentUser();
+  if (!user) return;
+
+  document.getElementById("settingsFirstName").value = user.firstName;
+  document.getElementById("settingsLastName").value = user.lastName;
+  document.getElementById("settingsEmail").value = user.email;
+  document.getElementById("settingsPhone").value = user.phone || "";
+}
+
 
 //---------------Base Functions-----------------------------------------------------------
 function login() {
@@ -323,6 +426,9 @@ function login() {
   )
   if (foundUser) {
     currentUserId = foundUser.id;
+    // NEW: persist current user
+    localStorage.setItem("currentUserId", currentUserId);
+
     showPage(dashboardPage);
   }
   else {
@@ -422,6 +528,21 @@ function withdraw() {
     return;
   }
 }
+
+async function updateUserProfile(userId, firstName, lastName, phone ) {
+  // Update user object
+  let updatedUser = await updateUser(userId, {
+    firstName,
+    lastName,
+    phone
+  });
+
+  if(!updatedUser){
+    throw new Error("Could not update user, database level error occurred.")
+  }
+
+  return updatedUser;
+};
 
 function changePwd() {
 
