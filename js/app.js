@@ -37,11 +37,13 @@ let toSignUpBtn = document.querySelector('#toSignUpBtn')
 let depositBtn = document.querySelector('#depositBtn')
 let transferBtn = document.querySelector('#transferBtn')
 let withdrawBtn = document.querySelector('#withdrawBtn')
-let changeBtn = document.querySelector('#changeBtn')
+let changePasswordBtn = document.querySelector('#changeBtn')
+let updateUserProfileBtn = document.querySelector('#settingsUpdateUser')
 let signUpBtn = document.querySelector('#signUpBtn')
 let loginNavBtns = document.querySelectorAll('[name="loginNavBtn"]') //slected using name attribute so as to avoid dupplicate button elements that do the samething - navigate to the login screen. 
 let forgotPasswordBtn = document.querySelector('#forgotPasswordBtn')
 let signOutBtn = document.querySelector('#signOutBtn')
+
 
 
 
@@ -157,7 +159,6 @@ transferBtn.addEventListener("click", function () {
 });
 
 withdrawBtn.addEventListener("click", function () {
-  withdrawPage.classList.add('d-none');
   withdraw();
 });
 
@@ -474,60 +475,153 @@ async function createUser(fullName, email, password) {
   return await addUser(newUser);
 }
 
-function transfer() {
-  let currentUser = db.bankUsers.find(
-    (user) => user.id === currentUserId
-  );
 
-  let email = document.querySelector('#transferEmail').value.trim()
-  let transferAmount = Number(document.querySelector('#transferAmount').value.trim());
-  let balance = currentUser.balance
+function deposit() {
+  let currentUser = db.bankUsers.find(user => user.id === currentUserId);
 
-  let recipientEmail = db.bankUsers.find(
-    user => user.email.toLowerCase() === email
-  );
+  let depositValue = document.querySelector('#depositAmount').value.trim();
+  let depositAmount = Number(depositValue);
 
-  transferInput.value = "";
-  if (currentUser && recipientEmail && transferAmount <= balance ) {
-    let newBalance = balance - transferAmount
-    currentUser.balance = newBalance;
-    alert("Transaction successful");
+  // Get selected method
+  let selectedButton = document.querySelector('.deposit-method.active');
+  let selectedMethod = selectedButton ? selectedButton.textContent.trim() : null;
+
+  // invalid amount
+  if (depositValue === "" || isNaN(depositAmount) || depositAmount < 100) {
+    alert("Minimum deposit is ₦100");
+    document.querySelector('#depositAmount').value = "";
+    return;
   }
-  else if (currentUser && !recipientEmail && transferAmount <= balance ) {
-    alert("Recipient not found");
+
+  // no method selected
+  else if (!selectedMethod) {
+    alert("Please select a deposit method");
+    return;
   }
-  else if (currentUser && recipientEmail && transferAmount > 0 && transferAmount > balance ) {
-    alert("Insufficient Funds");
+
+  // perform deposit
+  else if (depositAmount >= 100 && currentUser && selectedMethod) {
+    currentUser.wallets.NGN.balance += depositAmount;
+
+    // clear inputs and reset selection
+    document.querySelector('#depositAmount').value = "";
+    document.querySelectorAll('.deposit-method').forEach(btn => btn.classList.remove('active'));
+    document.querySelector('#depositBtn').classList.add('d-none');
+
+    alert(`Deposit successful via ${selectedMethod}`);
   }
+
   else {
     alert("Please fill in the correct details");
     return;
   }
-
 }
+
+// Add event listeners only for method selection
+document.querySelectorAll('.deposit-method').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.deposit-method').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    // Show the Deposit button
+    document.querySelector('#depositBtn').classList.remove('d-none');
+  });
+});
+
+
+
+function transfer() {
+  let currentUser = db.bankUsers.find(user => user.id === currentUserId);
+
+  let email = document.querySelector('#transferEmail').value.trim().toLowerCase();
+  let transferAmount = document.querySelector('#transferAmount').value.trim();
+  let balance = currentUser.wallets.NGN.balance;
+
+  let recipient = db.bankUsers.find(user => user.email.toLowerCase() === email);
+
+  // recipient not found
+  if (!recipient) {
+    alert("Recipient not found");
+    return;
+  }
+
+  // block self transfer
+  else if (recipient.id === currentUser.id) {
+    alert("You cannot transfer to yourself");
+    return;
+  }
+
+  // insufficient funds
+  else if (transferAmount > balance) {
+    alert("Insufficient Funds");
+    return;
+  }
+
+  // perform transfer
+  else if (currentUser && recipient && transferAmount <= balance) {
+    currentUser.wallets.NGN.balance -= transferAmount;
+    recipient.wallets.NGN.balance += transferAmount;
+
+    document.querySelector('#transferEmail').value = "";
+    document.querySelector('#transferAmount').value = "";
+
+    alert("Transaction successful");
+  }
+
+  else {
+    alert("Please fill in the correct details");
+    return;
+  }
+}
+
 
 function withdraw() {
   let currentUser = db.bankUsers.find(
     (user) => user.id === currentUserId
   );
 
-  let withdrawAmount = Number(document.querySelector('#withdrawInput').value.trim());
-  let balance = currentUser.balance
-  withdrawInput.value = "";
-  if (currentUser && withdrawAmount <= balance) {
-    let newBalance = balance - withdrawAmount
-    currentUser.balance = newBalance;
-    alert("Transaction Successful.")
-  }
-  else if (currentUser && withdrawAmount > 0 && withdrawAmount > balance) {
-    alert("Insufficient Funds.")
+  let bank = document.querySelector('#bankSelect').value;
+  let accountNumber = document.querySelector('#accountnumberinput').value.trim();
+  let withdrawAmount = Number(document.querySelector('#amountinput').value.trim());
+  let balance = currentUser.wallets.NGN.balance;
+
+  // invalid amount
+  if (withdrawAmount <= 0 || isNaN(withdrawAmount)) {
+    alert("Enter a valid amount");
     return;
   }
+
+  // missing bank or account number
+  else if (bank === "Select Bank" || accountNumber === "") {
+    alert("Please select a bank and enter account number");
+    return;
+  }
+
+  // insufficient funds
+  else if (withdrawAmount > balance) {
+    alert("Insufficient Funds");
+    return;
+  }
+
+  // perform withdrawal
+  else if (currentUser && withdrawAmount <= balance) {
+    // deduct from sender
+    currentUser.wallets.NGN.balance -= withdrawAmount;
+
+    // clear form inputs
+    document.querySelector('#bankSelect').value = "Select Bank";
+    document.querySelector('#accountnumberinput').value = "";
+    document.querySelector('#amountinput').value = "";
+
+    alert("Withdrawal successful");
+  }
+
   else {
     alert("Please fill in the correct details");
     return;
   }
 }
+
 
 async function updateUserProfile(userId, firstName, lastName, phone ) {
   // Update user object
